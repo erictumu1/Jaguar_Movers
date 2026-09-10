@@ -1,0 +1,1569 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+/>
+
+<title>
+  Moving Areas | GTA Moving Company | Jaguar Movers
+</title>
+
+<meta
+  name="description"
+  content="Jaguar Movers provides professional residential, commercial, packing and long-distance moving services across Toronto and the Greater Toronto Area, including Mississauga, Brampton, Vaughan, Markham, Richmond Hill, Oakville, Milton, Ajax, Pickering, Whitby and Oshawa."
+/>
+
+<meta
+  name="keywords"
+  content="moving company Toronto, movers GTA, Toronto movers, Mississauga movers, Brampton movers, Vaughan movers, Markham movers, Richmond Hill movers, Oakville movers, Milton movers, Ajax movers, Pickering movers, Whitby movers, Oshawa movers"
+/>
+
+<meta name="robots" content="index, follow" />
+
+<link
+  rel="canonical"
+  href="moving-areas.html"
+/>
+
+<link
+  rel="icon"
+  href="assets/logo.JPG"
+/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap"
+  rel="stylesheet"
+/>
+
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="mediaqueries.css" />
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
+
+<script
+  src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"
+></script>
+
+<style>
+
+  .areas-page {
+    background: #fff;
+    overflow: hidden;
+  }
+
+  .areas-hero {
+    position: relative;
+    min-height: 590px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background:
+      radial-gradient(
+        circle at 75% 20%,
+        rgba(206, 30, 30, 0.18),
+        transparent 35%
+      ),
+      linear-gradient(
+        135deg,
+        #170606 0%,
+        #260909 48%,
+        #0f0303 100%
+      );
+    color: #fff;
+  }
+
+  .areas-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(
+        rgba(255, 255, 255, 0.025) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.025) 1px,
+        transparent 1px
+      );
+    background-size: 55px 55px;
+    mask-image: linear-gradient(
+      to right,
+      black,
+      transparent
+    );
+    pointer-events: none;
+  }
+
+  .areas-hero-inner {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    align-items: center;
+    gap: 50px;
+  }
+
+  .areas-hero-copy {
+    max-width: 700px;
+  }
+
+  .areas-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    color: #ff6a6a;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .areas-eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 2px;
+    background: #ff4545;
+  }
+
+  .areas-hero h1 {
+    margin: 0 0 22px;
+    max-width: 720px;
+    color: #fff;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(42px, 5vw, 74px);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
+  }
+
+  .areas-hero h1 span {
+    color: #ff4b4b;
+  }
+
+  .areas-hero p {
+    max-width: 620px;
+    margin: 0 0 32px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 17px;
+    line-height: 1.8;
+  }
+
+  .areas-hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .areas-hero-stat {
+    justify-self: end;
+    width: min(100%, 440px);
+    padding: 34px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.055);
+    box-shadow:
+      0 30px 80px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(16px);
+  }
+
+  .areas-hero-stat-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+  }
+
+  .areas-hero-stat-label {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .areas-pulse {
+    position: relative;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #ff4545;
+  }
+
+  .areas-pulse::before {
+    content: "";
+    position: absolute;
+    inset: -7px;
+    border: 1px solid rgba(255, 69, 69, 0.5);
+    border-radius: 50%;
+    animation: areasPulse 2s infinite;
+  }
+
+  @keyframes areasPulse {
+    0% {
+      transform: scale(0.7);
+      opacity: 1;
+    }
+
+    100% {
+      transform: scale(1.7);
+      opacity: 0;
+    }
+  }
+
+  .areas-hero-stat strong {
+    display: block;
+    margin-bottom: 8px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 52px;
+    line-height: 1;
+  }
+
+  .areas-hero-stat p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .areas-stat-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 13px;
+    margin-top: 28px;
+  }
+
+  .areas-stat-item {
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.035);
+  }
+
+  .areas-stat-item strong {
+    margin-bottom: 5px;
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+  }
+
+  .areas-stat-item span {
+    color: rgba(255, 255, 255, 0.48);
+    font-size: 11px;
+  }
+
+  .areas-intro {
+    padding: 95px 0 45px;
+  }
+
+  .areas-intro-grid {
+    display: grid;
+    grid-template-columns: 0.75fr 1.25fr;
+    gap: 70px;
+    align-items: end;
+  }
+
+  .areas-intro h2 {
+    margin: 0;
+    max-width: 500px;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+  }
+
+  .areas-intro h2 span {
+    color: #c71f1f;
+  }
+
+  .areas-intro p {
+    max-width: 720px;
+    margin: 0;
+    color: #666;
+    font-size: 16px;
+    line-height: 1.85;
+  }
+
+  .areas-map-section {
+    padding: 45px 0 100px;
+  }
+
+  .areas-map-shell {
+    position: relative;
+    min-height: 700px;
+    overflow: hidden;
+    border: 1px solid #e8e1e1;
+    border-radius: 28px;
+    background: #f7f4f4;
+    box-shadow:
+      0 35px 90px rgba(38, 9, 9, 0.12),
+      0 4px 12px rgba(0, 0, 0, 0.03);
+  }
+
+  #gtaMap {
+    width: 100%;
+    height: 700px;
+    z-index: 1;
+  }
+
+  .leaflet-control-zoom {
+    border: none !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.14) !important;
+  }
+
+  .leaflet-control-zoom a {
+    color: #250808 !important;
+    border: none !important;
+    background: #fff !important;
+  }
+
+  .leaflet-control-attribution {
+    font-size: 9px !important;
+  }
+
+  .map-overlay {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    z-index: 500;
+    width: 310px;
+    padding: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.93);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.13);
+    backdrop-filter: blur(12px);
+  }
+
+  .map-overlay-label {
+    margin-bottom: 7px;
+    color: #c51e1e;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+  }
+
+  .map-overlay h3 {
+    margin: 0 0 8px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 22px;
+    line-height: 1.1;
+  }
+
+  .map-overlay p {
+    margin: 0;
+    color: #6c6262;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .map-legend {
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+    z-index: 500;
+    padding: 16px 18px;
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.93);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(12px);
+  }
+
+  .map-legend-title {
+    margin-bottom: 10px;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .map-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-top: 7px;
+    color: #655d5d;
+    font-size: 11px;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #d72828;
+    box-shadow: 0 0 0 4px rgba(215, 40, 40, 0.12);
+  }
+
+  .legend-ring {
+    width: 10px;
+    height: 10px;
+    border: 2px solid #d72828;
+    border-radius: 50%;
+    background: rgba(215, 40, 40, 0.1);
+  }
+
+  .jaguar-map-marker {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    border: 3px solid #fff;
+    border-radius: 50% 50% 50% 0;
+    background: #c71f1f;
+    box-shadow:
+      0 5px 15px rgba(120, 0, 0, 0.35),
+      0 0 0 5px rgba(199, 31, 31, 0.14);
+    transform: rotate(-45deg);
+  }
+
+  .jaguar-map-marker::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  .leaflet-popup-content-wrapper {
+    padding: 0 !important;
+    overflow: hidden;
+    border-radius: 15px !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18) !important;
+  }
+
+  .leaflet-popup-content {
+    width: 245px !important;
+    margin: 0 !important;
+  }
+
+  .area-popup {
+    padding: 18px;
+  }
+
+  .area-popup-tag {
+    margin-bottom: 5px;
+    color: #c71f1f;
+    font-size: 9px;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .area-popup h4 {
+    margin: 0 0 7px;
+    color: #1c0a0a;
+    font-family: "Montserrat", sans-serif;
+    font-size: 19px;
+  }
+
+  .area-popup p {
+    margin: 0 0 13px;
+    color: #706868;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+
+  .area-popup a {
+    color: #c71f1f;
+    font-size: 11px;
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .area-popup a:hover {
+    text-decoration: underline;
+  }
+
+  .areas-list-section {
+    padding: 90px 0 100px;
+    background: #f8f5f5;
+  }
+
+  .areas-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 30px;
+    margin-bottom: 45px;
+  }
+
+  .areas-list-header h2 {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.035em;
+  }
+
+  .areas-list-header p {
+    max-width: 440px;
+    margin: 0;
+    color: #6c6262;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .areas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 17px;
+  }
+
+  .area-card {
+    position: relative;
+    min-height: 190px;
+    padding: 25px;
+    overflow: hidden;
+    border: 1px solid #e7dddd;
+    border-radius: 17px;
+    background: #fff;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .area-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #c71f1f;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.25s ease;
+  }
+
+  .area-card:hover {
+    transform: translateY(-6px);
+    border-color: #d8c3c3;
+    box-shadow: 0 18px 40px rgba(52, 9, 9, 0.1);
+  }
+
+  .area-card:hover::before {
+    transform: scaleX(1);
+  }
+
+  .area-card-number {
+    display: block;
+    margin-bottom: 22px;
+    color: #c71f1f;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+  }
+
+  .area-card h3 {
+    margin: 0 0 9px;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
+  }
+
+  .area-card p {
+    margin: 0;
+    color: #716969;
+    font-size: 12px;
+    line-height: 1.65;
+  }
+
+  .coverage-section {
+    padding: 100px 0;
+    background: #170606;
+    color: #fff;
+  }
+
+  .coverage-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 75px;
+    align-items: center;
+  }
+
+  .coverage-section h2 {
+    margin: 0 0 22px;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(34px, 4vw, 54px);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+  }
+
+  .coverage-section h2 span {
+    color: #ff4d4d;
+  }
+
+  .coverage-section > .container > .coverage-grid > div > p {
+    max-width: 570px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  .coverage-points {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 32px;
+  }
+
+  .coverage-point {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.035);
+  }
+
+  .coverage-check {
+    display: grid;
+    flex: 0 0 26px;
+    width: 26px;
+    height: 26px;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(220, 38, 38, 0.15);
+    color: #ff5454;
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  .coverage-point span {
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 12px;
+  }
+
+  .coverage-visual {
+    position: relative;
+    min-height: 390px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    background:
+      radial-gradient(
+        circle at 50% 50%,
+        rgba(214, 32, 32, 0.2),
+        transparent 48%
+      ),
+      rgba(255, 255, 255, 0.025);
+  }
+
+  .coverage-canada {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.06);
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(100px, 16vw, 200px);
+    font-weight: 900;
+    letter-spacing: -0.08em;
+  }
+
+  .coverage-ontario {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 190px;
+    height: 190px;
+    transform: translate(-50%, -50%) rotate(12deg);
+    border: 2px solid rgba(255, 67, 67, 0.55);
+    border-radius: 45% 55% 60% 40%;
+    background: rgba(199, 31, 31, 0.08);
+    box-shadow:
+      0 0 70px rgba(199, 31, 31, 0.18),
+      inset 0 0 50px rgba(199, 31, 31, 0.08);
+  }
+
+  .coverage-gta {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 75px;
+    height: 75px;
+    transform: translate(-50%, -50%);
+    border: 2px solid #ff4b4b;
+    border-radius: 50%;
+    background: rgba(255, 55, 55, 0.15);
+    box-shadow:
+      0 0 0 15px rgba(255, 55, 55, 0.05),
+      0 0 0 35px rgba(255, 55, 55, 0.025),
+      0 0 60px rgba(255, 55, 55, 0.35);
+    animation: gtaGlow 2.8s ease-in-out infinite;
+  }
+
+  @keyframes gtaGlow {
+    0%,
+    100% {
+      box-shadow:
+        0 0 0 15px rgba(255, 55, 55, 0.05),
+        0 0 0 35px rgba(255, 55, 55, 0.025),
+        0 0 60px rgba(255, 55, 55, 0.3);
+    }
+
+    50% {
+      box-shadow:
+        0 0 0 25px rgba(255, 55, 55, 0.06),
+        0 0 0 50px rgba(255, 55, 55, 0.025),
+        0 0 90px rgba(255, 55, 55, 0.4);
+    }
+  }
+
+  .coverage-gta-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 65px);
+    white-space: nowrap;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .areas-final-cta {
+    padding: 95px 0;
+    background: #fff;
+  }
+
+  .areas-final-box {
+    position: relative;
+    overflow: hidden;
+    padding: 65px;
+    border-radius: 25px;
+    background:
+      radial-gradient(
+        circle at 90% 10%,
+        rgba(255, 75, 75, 0.18),
+        transparent 35%
+      ),
+      linear-gradient(145deg, #190606, var(--jaguar));
+    color: #fff;
+  }
+
+  .areas-final-box::after {
+    content: "JAGUAR";
+    position: absolute;
+    right: -25px;
+    bottom: -50px;
+    color: rgba(255, 255, 255, 0.055);
+    font-family: "Montserrat", sans-serif;
+    font-size: 130px;
+    font-weight: 900;
+    letter-spacing: -0.07em;
+    pointer-events: none;
+  }
+
+  .areas-final-box-inner {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 35px;
+  }
+
+  .areas-final-box h2 {
+    margin: 0 0 10px;
+    font-family: "Montserrat", sans-serif;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.05;
+  }
+
+  .areas-final-box p {
+    max-width: 590px;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .areas-final-box .btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 1000px) {
+    .areas-hero-inner,
+    .areas-intro-grid,
+    .coverage-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .areas-hero {
+      padding: 90px 0;
+    }
+
+    .areas-hero-stat {
+      justify-self: start;
+    }
+
+    .areas-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .coverage-visual {
+      min-height: 330px;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .areas-hero {
+      min-height: auto;
+      padding: 75px 0;
+    }
+
+    .areas-hero h1 {
+      font-size: 43px;
+    }
+
+    .areas-hero p {
+      font-size: 14px;
+    }
+
+    .areas-hero-stat {
+      padding: 25px;
+    }
+
+    .areas-intro {
+      padding-top: 65px;
+    }
+
+    .areas-map-section {
+      padding-top: 30px;
+      padding-bottom: 65px;
+    }
+
+    .areas-map-shell,
+    #gtaMap {
+      min-height: 520px;
+      height: 520px;
+      border-radius: 20px;
+    }
+
+    .map-overlay {
+      top: 14px;
+      left: 14px;
+      width: calc(100% - 28px);
+      padding: 17px;
+    }
+
+    .map-legend {
+      right: 14px;
+      bottom: 14px;
+    }
+
+    .areas-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .areas-list-header {
+      display: block;
+    }
+
+    .areas-list-header p {
+      margin-top: 15px;
+    }
+
+    .coverage-points {
+      grid-template-columns: 1fr;
+    }
+
+    .coverage-visual {
+      min-height: 280px;
+    }
+
+    .areas-final-box {
+      padding: 40px 25px;
+    }
+
+    .areas-final-box-inner {
+      display: block;
+    }
+
+    .areas-final-box .btn {
+      display: inline-flex;
+      margin-top: 25px;
+    }
+
+    .areas-final-box::after {
+      font-size: 70px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .areas-hero {
+      padding: 60px 0;
+    }
+
+    .areas-hero h1 {
+      font-size: 38px;
+    }
+
+    .areas-hero p {
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .areas-hero-stat {
+      padding: 20px;
+    }
+
+    .areas-hero-stat strong {
+      font-size: 42px;
+    }
+
+    .areas-map-shell,
+    #gtaMap {
+      min-height: 470px;
+      height: 470px;
+      border-radius: 16px;
+    }
+
+    .map-overlay {
+      width: calc(100% - 20px);
+      top: 10px;
+      left: 10px;
+      padding: 14px;
+    }
+
+    .map-overlay h3 {
+      font-size: 18px;
+    }
+
+    .map-overlay p {
+      font-size: 11px;
+    }
+
+    .map-legend {
+      right: 10px;
+      bottom: 10px;
+      padding: 11px 13px;
+    }
+  }
+
+</style>
+
+  </head>
+
+  <body>
+
+<div id="site-header"></div>
+
+<main class="areas-page">
+
+  <section class="areas-hero">
+
+    <div class="container areas-hero-inner">
+
+      <div class="areas-hero-copy">
+
+        <div class="areas-eyebrow">
+          Our Service Area
+        </div>
+
+        <h1>
+          Moving
+          <span>across the GTA.</span>
+        </h1>
+
+        <p>
+          From downtown Toronto to Mississauga, Brampton,
+          Vaughan, Markham, Oakville and beyond, Jaguar
+          Movers helps families and businesses move with
+          confidence throughout the Greater Toronto Area.
+        </p>
+
+        <div class="areas-hero-actions">
+
+          <a
+            class="btn btn-primary btn-large"
+            href="contact.html#quote"
+          >
+            Get a Free Quote →
+          </a>
+
+          <a
+            class="btn btn-white btn-large"
+            href="#gta-map-section"
+          >
+            Explore Our Areas
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="areas-hero-stat">
+
+        <div class="areas-hero-stat-top">
+
+          <span class="areas-hero-stat-label">
+            Currently serving
+          </span>
+
+          <span class="areas-pulse"></span>
+
+        </div>
+
+        <strong>
+          GTA
+        </strong>
+
+        <p>
+          Greater Toronto Area and surrounding
+          communities.
+        </p>
+
+        <div class="areas-stat-list">
+
+          <div class="areas-stat-item">
+            <strong>15+</strong>
+            <span>Communities</span>
+          </div>
+
+          <div class="areas-stat-item">
+            <strong>24/7</strong>
+            <span>Quote requests</span>
+          </div>
+
+          <div class="areas-stat-item">
+            <strong>Local</strong>
+            <span>Moving specialists</span>
+          </div>
+
+          <div class="areas-stat-item">
+            <strong>GTA</strong>
+            <span>Coverage</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="areas-intro">
+
+    <div class="container areas-intro-grid">
+
+      <h2>
+        Wherever you are in the
+        <span>GTA.</span>
+      </h2>
+
+      <p>
+        Jaguar Movers provides professional moving services
+        throughout the Greater Toronto Area. Explore the map
+        below to see the communities we commonly serve.
+        Select a location to learn more about moving services
+        available in that area.
+      </p>
+
+    </div>
+
+  </section>
+
+  <section
+    class="areas-map-section"
+    id="gta-map-section"
+  >
+
+    <div class="container">
+
+      <div class="areas-map-shell">
+
+        <div class="map-overlay">
+
+          <div class="map-overlay-label">
+            Jaguar Movers
+          </div>
+
+          <h3>
+            Where we move
+          </h3>
+
+          <p>
+            Drag, zoom and explore the map. Click any Jaguar
+            marker to see the community we serve.
+          </p>
+
+        </div>
+
+        <div id="gtaMap"></div>
+
+        <div class="map-legend">
+
+          <div class="map-legend-title">
+            Map key
+          </div>
+
+          <div class="map-legend-item">
+            <span class="legend-dot"></span>
+            Jaguar Movers service area
+          </div>
+
+          <div class="map-legend-item">
+            <span class="legend-ring"></span>
+            Greater GTA coverage
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="areas-list-section">
+
+    <div class="container">
+
+      <div class="areas-list-header">
+
+        <div>
+
+          <div class="areas-eyebrow">
+            Areas We Serve
+          </div>
+
+          <h2>
+            Serving communities<br />
+            across the GTA.
+          </h2>
+
+        </div>
+
+        <p>
+          These are some of the communities we regularly
+          serve. Don't see your exact location? Contact us —
+          we may still be able to help with your move.
+        </p>
+
+      </div>
+
+      <div class="areas-grid">
+
+        <article class="area-card">
+
+          <span class="area-card-number">
+            01
+          </span>
+
+          <h3>
+            Toronto
+          </h3>
+
+          <p>
+            Downtown Toronto, East York and surrounding
+            Toronto neighbourhoods.
+          </p>
+
+        </article>
+
+        <article class="area-card">
+
+          <span class="area-card-number">
+            02
+          </span>
+
+          <h3>
+            North York
+          </h3>
+
+          <p>
+            Homes, condos and apartments throughout
+            North York.
+          </p>
+
+        </article>
+
+        <article class="area-card">
+
+          <span class="area-card-number">
+            03
+          </span>
+
+          <h3>
+            Scarborough
+          </h3>
+
+          <p>
+            Residential, apartment and specialty moves
+            across Scarborough.
+          </p>
+
+        </article>
+
+        <article class="area-card">
+
+          <span class="area-card-number">
+            04
+          </span>
+
+          <h3>
+            Mississauga
+          </h3>
+
+          <p>
+            Residential and commercial moving throughout
+            Mississauga.
+          </p>
+
+        </article>
+
+        <article class="area-card">
+
+          <span class="area-card-number">
+            05
+          </span>
+
+          <h3>
+            Brampton
+          </h3>
+
+          <p>
+            Local relocations and longer-distance moves
+            starting in Brampton.
+          </p>
+
+        </article>
+
+        <article class="area-card">
+
+          <span class="area-card-number">
+            06
+          </span>
+
+          <h3>
+            Vaughan
+          </h3>
+
+          <p>
+            Professional moving services for homes,
+            condos and businesses.
+          </p>
+
+        </article>
+
+        <article class="area-card">
+
+          <span class="area-card-number">
+            07
+          </span>
+
+          <h3>
+            Markham
+          </h3>
+
+          <p>
+            Reliable residential and commercial moving
+            throughout Markham.
+          </p>
+
+        </article>
+
+        <article class="area-card">
+
+          <span class="area-card-number">
+            08
+          </span>
+
+          <h3>
+            Richmond Hill
+          </h3>
+
+          <p>
+            Local moves, apartment moves and larger
+            residential relocations.
+          </p>
+
+        </article>
+
+        <article class="area-card">
+
+          <span class="area-card-number">
+            09
+          </span>
+
+          <h3>
+            Oakville
+          </h3>
+
+          <p>
+            Professional movers serving Oakville homes
+            and businesses.
+          </p>
+
+        </article>
+
+        <article class="area-card">
+
+          <span class="area-card-number">
+            10
+          </span>
+
+          <h3>
+            Burlington
+          </h3>
+
+          <p>
+            Moving support throughout Burlington and
+            surrounding communities.
+          </p>
+
+        </article>
+
+        <article class="area-card">
+
+          <span class="area-card-number">
+            11
+          </span>
+
+          <h3>
+            Milton
+          </h3>
+
+          <p>
+            Moving services for growing Milton
+            neighbourhoods and homes.
+          </p>
+
+        </article>
+
+        <article class="area-card">
+
+          <span class="area-card-number">
+            12
+          </span>
+
+          <h3>
+            Pickering
+          </h3>
+
+          <p>
+            Residential and commercial moving services
+            across Pickering.
+          </p>
+
+        </article>
+
+        <article class="area-card">
+
+          <span class="area-card-number">
+            13
+          </span>
+
+          <h3>
+            Ajax
+          </h3>
+
+          <p>
+            Professional moving support throughout Ajax
+            and surrounding areas.
+          </p>
+
+        </article>
+
+        <article class="area-card">
+
+          <span class="area-card-number">
+            14
+          </span>
+
+          <h3>
+            Whitby
+          </h3>
+
+          <p>
+            Reliable local and long-distance moving
+            services in Whitby.
+          </p>
+
+        </article>
+
+        <article class="area-card">
+
+          <span class="area-card-number">
+            15
+          </span>
+
+          <h3>
+            Oshawa
+          </h3>
+
+          <p>
+            Moving services for homes and businesses
+            throughout Oshawa.
+          </p>
+
+        </article>
+
+        <article class="area-card">
+
+          <span class="area-card-number">
+            16
+          </span>
+
+          <h3>
+            And Beyond
+          </h3>
+
+          <p>
+            Have a different origin or destination?
+            Contact us to discuss your route.
+          </p>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="coverage-section">
+
+    <div class="container">
+
+      <div class="coverage-grid">
+
+        <div>
+
+          <div class="areas-eyebrow">
+            From Canada to the GTA
+          </div>
+
+          <h2>
+            Your move starts
+            <span>here.</span>
+          </h2>
+
+          <p>
+            Jaguar Movers is focused on providing a smooth,
+            professional moving experience throughout
+            Toronto and the Greater Toronto Area. Whether
+            you're moving across the street or across the
+            region, our team is ready to help.
+          </p>
+
+          <div class="coverage-points">
+
+            <div class="coverage-point">
+              <span class="coverage-check">✓</span>
+              <span>Residential moves</span>
+            </div>
+
+            <div class="coverage-point">
+              <span class="coverage-check">✓</span>
+              <span>Commercial relocations</span>
+            </div>
+
+            <div class="coverage-point">
+              <span class="coverage-check">✓</span>
+              <span>Packing services</span>
+            </div>
+
+            <div class="coverage-point">
+              <span class="coverage-check">✓</span>
+              <span>Long-distance moves</span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="coverage-visual">
+
+          <div class="coverage-canada">
+            CANADA
+          </div>
+
+          <div class="coverage-ontario"></div>
+
+          <div class="coverage-gta"></div>
+
+          <div class="coverage-gta-label">
+            Greater Toronto Area
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="areas-final-cta">
+
+    <div class="container">
+
+      <div class="areas-final-box">
+
+        <div class="areas-final-box-inner">
+
+          <div>
+
+            <h2>
+              Planning a move?
+            </h2>
+
+            <p>
+              Tell Jaguar Movers where you're moving from
+              and where you're going. We'll help you plan
+              the next step.
+            </p>
+
+          </div>
+
+          <a
+            class="btn btn-white btn-large"
+            href="contact.html#quote"
+          >
+            Get Your Free Quote →
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+<div id="site-footer"></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="scripts.js"></script>
+
+</body>
+</html>

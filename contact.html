@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <title>Contact Jaguar Movers | Free Moving Quote</title>
+    <link href="assets/logo.JPG" rel="icon" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=Montserrat:wght@700;800;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link href="styles.css" rel="stylesheet" />
+    <link href="mediaqueries.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="site-header"></div>
+    <main>
+      <section class="page-hero">
+        <div class="container">
+          <div class="eyebrow">CONTACT JAGUAR</div>
+          <h1>Let's plan your move.</h1>
+          <p>
+            Send us the details of your move and our team can follow up with the
+            next steps.
+          </p>
+        </div>
+      </section>
+      <section class="section" id="quote">
+        <div class="container contact-layout">
+          <div class="contact-info">
+            <div class="eyebrow">GET IN TOUCH</div>
+            <h2>Tell us where you're going.</h2>
+            <p>
+              Give us your preferred date, origin, destination and anything that
+              could affect the move such as stairs, elevators, pianos or large
+              furniture.
+            </p>
+            <div class="contact-lines">
+              <a href="tel:+14165551234"
+                ><b>Phone</b><span>+1 (416) 555-1234</span></a
+              ><a href="mailto:info@jaguarmovers.ca"
+                ><b>Email</b><span>info@jaguarmovers.ca</span></a
+              >
+              <div><b>Service area</b><span>Toronto &amp; GTA</span></div>
+            </div>
+          </div>
+          <form class="quote-form" id="contactForm">
+            <div class="form-grid">
+              <label
+                >Full name<input
+                  name="name"
+                  placeholder="Your full name"
+                  required="" /></label
+              ><label
+                >Email<input
+                  name="email"
+                  placeholder="you@example.com"
+                  required=""
+                  type="email" /></label
+              ><label
+                >Phone<input
+                  name="phone"
+                  placeholder="+1 (416) 555-1234" /></label
+              ><label>Moving date<input name="moveDate" type="date" /></label
+              ><label
+                >Move from<input
+                  name="from"
+                  placeholder="City / neighbourhood" /></label
+              ><label
+                >Move to<input name="to" placeholder="City / neighbourhood"
+              /></label>
+            </div>
+            <label
+              >Tell us about your move<textarea
+                name="message"
+                placeholder="Bedrooms, stairs, elevator, piano, packing, special items, etc."
+                rows="6"
+              ></textarea></label
+            ><button class="btn btn-primary btn-large" type="submit">
+              Request My Free Quote →
+            </button>
+            <div class="form-status" id="formStatus"></div>
+          </form>
+        </div>
+      </section>
+    </main>
+    <div id="site-footer"></div>
+    <script src="scripts.js"></script>
+    <script>
+      document.getElementById("contactForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const s = document.getElementById("formStatus");
+        s.textContent =
+          "Thanks! Your quote request has been received. We'll be in touch shortly.";
+        s.style.color = "#7b0f0f";
+        e.target.reset();
+      });
+    </script>
+  </body>
+</html>
